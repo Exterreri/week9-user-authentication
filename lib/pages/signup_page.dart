@@ -25,7 +25,13 @@ class _SignUpState extends State<SignUpPage> {
               key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [heading, emailField, passwordField, submitButton],
+                children: [
+                  heading,
+                  nameField,
+                  emailField,
+                  passwordField,
+                  submitButton
+                ],
               ),
             )),
       ),
@@ -37,6 +43,23 @@ class _SignUpState extends State<SignUpPage> {
         child: Text(
           "Sign Up",
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        ),
+      );
+
+  Widget get nameField => Padding(
+        padding: const EdgeInsets.only(bottom: 30),
+        child: TextFormField(
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              label: Text("Name"),
+              hintText: "Enter your name"),
+          onSaved: (value) => setState(() => email = value),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Please enter your name";
+            }
+            return null;
+          },
         ),
       );
 
